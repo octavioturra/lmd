@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Limonada</title>
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.0/yeti/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+</head>
+
+<body>
+    <header class="navbar navbar-fixed-top navbar-default">
+        <a href="/" class="navbar-brand">Limonada</a>
+        <ul class="navbar-nav nav navbar-right">
+            <li>
+                <% if(isLogged()){%>
+                    <a href="/logoff">Sair</a>
+                    <%}%>
+            </li>
+        </ul>
+    </header>
+    <br>
+    <br>
+    <%if(message){%>
+        <p class="alert alert-<%=message.type%>">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <%=message.message%>
+        </p>
+    <%}%>
+    <br>
+    <main>
+        <%- body%>
+    </main>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
