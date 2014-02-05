@@ -1,4 +1,4 @@
-db = new require './lib/database'
+db = require('./lib/database')()
 passport = new (require './lib/passport')
 
 app = require('./app')(passport)
@@ -9,8 +9,7 @@ index = new (require('./controllers/index'))
 recipes = new (require('./controllers/recipes'))(recipe)
 
 app.get '/', index.index
-app.get '/login', passport.validate, index.home
-app.post '/login', passport.validate, index.home
+app.post '/login', passport.validate, (req, res)-> res.redirect '/recipes'
 app.get '/logoff', passport.logoff
 app.get '/home', passport.validate, recipes.all
 

@@ -1,6 +1,5 @@
 class Passport
-    setUp : (req, res, next)->
-        console.log(req.session.message)
+    setUp : (req, res, next)->        
         res.locals.message = req.session.message or undefined
         req.session.message = undefined
         res.locals.isLogged = ()->
