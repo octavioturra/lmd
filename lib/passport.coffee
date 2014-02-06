@@ -19,7 +19,11 @@ class Passport
             req.session.user = id: 0
             return next()    
         
-        req.session.message = type: 'danger', message: 'Usuário ou senha inválidos'
+        if email
+            req.session.message = type: 'danger', message: 'Usuário ou senha inválidos'    
+        else
+            req.session.message = type: 'danger', message: 'Faça o login para entrar'
+        
         return res.redirect '/'
     
     logoff : (req, res, next)->

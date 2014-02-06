@@ -7,4 +7,4 @@ module.exports = ()->
     db.once 'open', ()->
         console.log 'MongoDB Openned'
         
-    return db
+    return mongoose

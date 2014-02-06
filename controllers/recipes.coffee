@@ -5,36 +5,41 @@ class Recipes
     
     all: (req, res, next)=>        
         @recipe.find (err, r)->
-            console.log err, r
             if err
                 req.session.message = message : type : 'danger', message: err.message
-                res.redirect '/'
+                return res.redirect '/'
             res.render 'home', recipes : r        
     
-    showCreate: (req, res, next)=>
-        res.render 'newRecipe'
+    form: (req, res, next)=>
+        res.render 'recipe', recipe: _id:'', name:'', description:''
     
-    doCreate: (req, res, next)=>
+    create: (req, res, next)=>
         recipe = new @recipe name : req.param('name'), description: req.param('description')
         recipe.save (err, r)->
             if err
                 req.session.message = message : type : 'danger', message: err.message
-                res.redirect '/'
+                return res.redirect '/'
             req.session.message = type: 'success', message: 'Criado com sucesso.'
-            res.redirect '/recipe', r
+            res.redirect '/recipes'
     
     show: (req, res, next)=>
-        @recipe.find {id: req.param 'id'}, (err, r)->
+        @recipe.find {_id: req.param 'id'}, (err, r)->
             if err
                 req.session.message = message : type : 'danger', message: err.message
-                res.redirect '/'
-            res.render 'recipe', r
+                return res.redirect '/'
+            if r.length is 0
+                req.session.message = message : type : 'danger', message: 'Receita não encontrada'
+                return res.redirect '/'
+            res.render 'recipe', recipe: r[0]
         
     modify: (req, res, next)=>
         @recipe.find {id: req.param 'id'}, (err, r)->
             if err
                 req.session.message = message : type : 'danger', message: err.message
-                res.redirect '/'
+                return res.redirect '/'
+            if r.length is 0
+                req.session.message = message : type : 'danger', message: 'Receita não encontrada'
+                return res.redirect '/'
             r.name = req.param 'name'
             r.description = req.param 'description'
             r.save (err, r)->

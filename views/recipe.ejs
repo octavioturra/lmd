@@ -1,7 +1,15 @@
 <%layout("_layout")%>
 
-<%if(){%>
-
-<%}else{%>
-    
-<%}%>
+<div class="col-md-4 col-md-offset-4">
+    <form action="/recipe/<%=recipe._id%>" method="post">
+        <div class="form-group">
+            <label for="name">Nome</label>
+            <input type="text" class="form-control" name="name" id="name" value="<%=recipe.name%>">
+        </div>
+        <div class="form-group">
+            <label for="description">Descrição</label>
+            <textarea name="description" id="description" class="form-control"><%=recipe.description%></textarea>
+        </div>
+        <button class="btn btn-default" type="submit">Salvar</button>
+    </form>
+</div>

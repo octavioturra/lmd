@@ -12,12 +12,15 @@
 <body>
     <header class="navbar navbar-fixed-top navbar-default">
         <a href="/" class="navbar-brand">Limonada</a>
-        <ul class="navbar-nav nav navbar-right">
-            <li>
-                <% if(isLogged()){%>
+        <ul class="navbar-nav nav navbar-right">    
+            <% if(isLogged()){%>
+                <li>
+                    <a href="/recipes"></a>
+                </li>
+                <li>
                     <a href="/logoff">Sair</a>
-                <%}%>
-            </li>
+                </li>
+            <%}%>
         </ul>
     </header>
     <br>

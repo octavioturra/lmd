@@ -1,5 +1,7 @@
 class Index
     index : (req, res)->
-        res.render 'index'
+        if req.session.user
+            return res.redirect '/recipes'
+        return res.render 'index'
         
 module.exports = Index

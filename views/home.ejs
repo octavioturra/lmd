@@ -13,14 +13,14 @@
                 <%recipes.forEach(function(r){%>
                     <tr>
                         <td>
-                            <%=r.name%>
+                            <a href="/recipe/<%=r._id%>"><%=r.name%></a>
                         </td>
                         <td>
                             <%=r.description%>
                         </td>
                         <th>
-                            <a href="#/remove/<%=r._id%>">
-                                <span class="fa fa-trash"></span>
+                            <a href="#" onclid="doRemove(<%=r._id%>)">
+                                <span class="fa fa-trash-o"></span>
                             </a>
                         </th>
                     </tr>
@@ -31,16 +31,4 @@
         <h3 class="alert alert-danger">Não há receitas</h3>
     <%}%>
         <hr>
-        <div class="col-md-4 col-md-offset-4">
-            <form action="/recipes" method="post">
-                <div class="form-group">
-                    <label for="name">Nome</label>
-                    <input type="text" class="form-control" name="name" id="name">
-                </div>
-                <div class="form-group">
-                    <label for="description">Descrição</label>
-                    <textarea name="description" id="description" class="form-control"></textarea>
-                </div>
-                <button class="btn btn-default" type="submit">Adicionar</button>
-            </form>
-        </div>
+<a href="/recipe" class="btn btn-link"><span class="fa fa-plus"></span> Adicionar</a>
