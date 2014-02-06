@@ -4,7 +4,7 @@ module.exports = function (passport, mongoose) {
     var path = require('path');
     var engine = require('ejs-locals');
     var app = express();
-    
+
     // all environments
     app.set('port', process.env.PORT || 3000);
     app.engine('ejs', engine);
@@ -32,8 +32,21 @@ module.exports = function (passport, mongoose) {
         })
     }));
     app.use(passport.setUp)
+
+
+    app.use(function (req, res, next) {
+        res.locals.version = '?' + (function () {
+            return (Math.random() * 6666).toFixed(0);
+        })();
+        next();
+    });
+
+
     app.use(app.router);
-    app.use(require('stylus').middleware(path.join(__dirname, 'public')));
+    app.use(require('stylus').middleware({
+        src: path.join(__dirname, 'public'),
+        compress:true
+    }));
     app.use(express.static(path.join(__dirname, 'public')));
 
     // development only
