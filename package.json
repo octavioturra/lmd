@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "coffee index.coffee"
+    "start": "nodemon --exec coffee --ext js,css,styl,ejs,coffee -w controllers/* -w models/* -w public/scripts/* -w public/stylesheet/* -w views/**/* -w lib/* -w ./* index.coffee"
   },
   "dependencies": {
     "express": "3.4.7",
@@ -14,6 +14,7 @@
     "express-sessions": "~1.0.5"
   },
   "devDependencies": {
-    "coffee-script": "~1.7.1"
+    "coffee-script": "~1.7.1",
+    "nodemon": "~1.0.14"
   }
 }
