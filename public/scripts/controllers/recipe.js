@@ -3,3 +3,11 @@ doRemove = function(id){
         doPost('/recipe/remove', {id: id});        
     }
 };
+
+angular.module('lmd').controller('RecipeCtrl', function($scope, $http){
+    $scope.recipe = {
+        ingredients:[],
+        steps:[],
+        author:{}
+    };
+});

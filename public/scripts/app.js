@@ -23,3 +23,5 @@ var doPost = function(url, query){
     
     form.submit();
 }
+
+angular.module('lmd', []);

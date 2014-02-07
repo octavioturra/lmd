@@ -26,11 +26,11 @@ class Recipes
         @recipe.find {_id: req.param 'id', active: true}, (err, r)->
             if err
                 req.session.message = type : 'danger', message: err.message
-                return res.redirect '/recipes'
+                return res.end redirect: '/recipes'
             if r.length is 0
                 req.session.message = type : 'danger', message: 'Receita não encontrada'
-                return res.redirect '/recipes'
-            res.render 'recipe', recipe: r[0]
+                return res.end redirect: '/recipes'
+            res.send recipe: r[0]
         
     modify: (req, res, next)=>
         id = req.param 'id' 

@@ -2,7 +2,7 @@ mongoose = require 'mongoose'
 ObjectId = mongoose.Schema.Types.ObjectId
 
 module.exports = mongoose.model 'Recipe', {
-    changeset: Number
+    changeset: type: Number, get(val)-> @_v
     key: type: ObjectId, get: (val)-> @_id
     name: String
     description: String
