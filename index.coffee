@@ -17,8 +17,10 @@ app.get '/home', passport.validate, recipes.all
 
 app.get '/recipes', passport.validate, recipes.all
 app.get '/recipe', passport.validate, recipes.form
+app.post '/recipe/remove', passport.validate, recipes.remove
 app.post '/recipe', passport.validate, recipes.create
 app.get '/recipe/:id', passport.validate, recipes.show
 app.post '/recipe/:id', passport.validate, recipes.modify
+
 
 app.start()

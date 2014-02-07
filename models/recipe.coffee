@@ -1,7 +1,7 @@
 mongoose = require 'mongoose'
 ObjectId = mongoose.Schema.Types.ObjectId
 
-module.exports = mongoose.model 'Recipe', 
+module.exports = mongoose.model 'Recipe', {
     changeset: Number
     key: type: ObjectId, get: (val)-> @_id
     name: String
@@ -27,4 +27,6 @@ module.exports = mongoose.model 'Recipe',
         site: String
         email: String
     },
-    lastUpdate : dd/mm/yyyy
+    lastUpdate : type: Date, default: Date.now
+    active : type: Boolean, default: true
+}
