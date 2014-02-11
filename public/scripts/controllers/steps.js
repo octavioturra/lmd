@@ -4,7 +4,7 @@ angular.module('lmd').controller('StepsCtrl', function ($scope) {
 
         var self = Step.prototype;
         self.description = '';
-        self.order = 1;
+        self.order = 0;
         self.optional = false;
         return Step;
     }();

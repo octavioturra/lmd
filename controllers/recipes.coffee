@@ -29,7 +29,7 @@ class Recipes
                 return res.end redirect: '/recipes'
             if r.length is 0
                 req.session.message = type : 'danger', message: 'Receita não encontrada'
-                return res.end redirect: '/recipes'
+                return res.end redirect: '/recipes'            
             res.send recipe: r[0]
         
     modify: (req, res, next)=>

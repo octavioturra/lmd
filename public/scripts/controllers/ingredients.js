@@ -5,8 +5,8 @@ angular.module('lmd').controller('IngredientsCtrl', function ($scope) {
         var self = Ingredient.prototype;
         self.key = '';
         self.name = '';
-        self.quantity = 1;
-        self.unity = 'un';
+        self.quantity = 0;
+        self.unity = '';
         self.optional = false;
         self.switchList = [];
         return Ingredient;
@@ -15,7 +15,7 @@ angular.module('lmd').controller('IngredientsCtrl', function ($scope) {
     $scope.ingredient = new Ingredient;
     $scope.add = function () {
         var ingredient = $scope.ingredient;
-        if (ingredient.name.length === 0) {
+        if (!ingredient.name) {
 
             return;
         }
@@ -23,7 +23,7 @@ angular.module('lmd').controller('IngredientsCtrl', function ($scope) {
 
             return;
         }
-        if (ingredient.unity === '') {
+        if (!ingredient.unity) {
 
             return;
         }   

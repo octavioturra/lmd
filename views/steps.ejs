@@ -16,40 +16,38 @@
                 <input type="checkbox" name="stepOptional" id="stepOptional" data-ng-model="step.optional">Opcional
             </label>
         </div>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Ordem</th>
-                    <th>Descrição</th>
-                    <th>Opcional</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody data-ng-if="recipe.steps.length==0">
-                <tr>
-                    <td colspan="100" class="alert alert-warning">
-                        <span>Nenhum passo adicionado.</span>
-                    </td>
-                </tr>
-            </tbody>
-            <tbody data-ng-if="recipe.steps.length>=0">
-                <tr data-ng-repeat="r in recipe.steps">
-                    <td>{{r.order}}</td>
-                    <td>{{r.description}}</td>
-                    <td>{{r.optional}}</td>
-                    <td>
-                        <a href="javascript:">
-                            <span class="fa fa-trash-o" data-ng-click="remove(r)"></span>
-                        </a>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
     </div>
     <div class="panel-footer">
         <button class="btn btn-default" type="button" data-ng-disabled="step.description.length===0" data-ng-click="add()">Adicionar</button>
     </div>
+    <table class="table">
+        <thead data-ng-if="recipe.steps.length!=0">
+            <tr>
+                <th>Ordem</th>
+                <th>Descrição</th>
+                <th>Opcional</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody data-ng-if="recipe.steps.length==0">
+            <tr>
+                <td colspan="100" class="alert alert-warning">
+                    <span>Nenhum passo adicionado.</span>
+                </td>
+            </tr>
+        </tbody>
+        <tbody data-ng-if="recipe.steps.length!=0">
+            <tr data-ng-repeat="r in recipe.steps">
+                <td>{{r.order}}</td>
+                <td>{{r.description}}</td>
+                <td>{{r.optional}}</td>
+                <td>
+                    <a href="javascript:">
+                        <span class="fa fa-trash-o" data-ng-click="remove(r)"></span>
+                    </a>
+                </td>
+            </tr>
 
+        </tbody>
+    </table>
 </fieldset>
