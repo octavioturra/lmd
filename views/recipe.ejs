@@ -1,129 +1,67 @@
 <%layout( "_layout")%>
-    <div class="col-md-4 col-md-offset-4" data-ng-controller="RecipeCtrl">
-        <form action="/recipe/<%=recipe._id%>" method="post">
-            <input type="hidden" name="id" value="<%=id%>" data-ng-model="recipe.id">
-            <div class="form-group">
-                <label for="name">Nome</label>
-                <input type="text" class="form-control" name="name" id="name" data-ng-model="recipe.name">
-            </div>
-            <div class="form-group">
-                <label for="description">Descrição</label>
-                <textarea name="description" id="description" class="form-control" data-ng-model="recipe.description"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="category">Categoria</label>
-                <select name="category" id="category" class="form-control" data-ng-model="recipe.category">
-                    <option>Normal</option>
-                    <option>Orgânica</option>
-                    <option>Álcoolico</option>
-                    <option>Exótica</option>
-                </select>
-            </div>
-            <fieldset>
-                <legend>Ingredientes</legend>
-                <div class="form-group">
-                    <label for="ingredient">Ingrediente</label>
-                    <input type="text" class="form-control" name="ingredient" id="ingredient" data-ng-model="ingrediente.name">
-                </div>
-                <div class="form-group">
-                    <label for="quantity">Quantidade</label>
-                    <input type="number" name="quantity" id="quantity" class="form-control" data-ng-model="ingrediente.quantity">
-                </div>
-                <div class="form-group">
-                    <label for="unity">Unidade</label>
-                    <select name="unity" id="unity" class="form-control" data-ng-model="ingrediente.unity"></select>
-                </div>
-                <fieldset>
-                    <legend>Trocável por</legend>
-                    <div class="checkbox">
-                        <label for="switchList" data-ng-repeat="recipe.ingredients">
-                            <input type="checkbox" name="switchList" id="switchList" data-ng-model="key">{{ingredient}}
-                        </label>
+    <div class="row-fluid" data-ng-controller="RecipeCtrl">
+        <form method="post" data-nj-submit="save()">
+            <input type="hidden" name="id" value="<%=recipe._id%>" data-ng-model="recipe.id">
+            <div class="col-md-6">
+                <fieldset class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3>Receita</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <input type="text" class="form-control" name="name" id="name" data-ng-model="recipe.name">
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Categoria</label>
+                            <select name="category" id="category" class="form-control" data-ng-model="recipe.category">
+                                <option>Normal</option>
+                                <option>Orgânica</option>
+                                <option>Álcoolico</option>
+                                <option>Exótica</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Descrição</label>
+                            <textarea name="description" id="description" class="form-control" data-ng-model="recipe.description" rows="6"></textarea>
+                        </div>
                     </div>
                 </fieldset>
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" name="optional" id="optional" data-ng-model="ingrediente.optional">Opcional
-                    </label>
+                <fieldset class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3>
+                            Autor
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="authorName">Nome</label>
+                            <input type="text" class="form-control" id="authorName" name="authorName" data-ng-model="recipe.author.name">
+                        </div>
+                        <div class="form-group">
+                            <label for="autorEmail">Email</label>
+                            <input type="text" class="form-control" id="autorEmail" name="autorEmail" data-ng-model="recipe.author.email">
+                        </div>
+                        <div class="form-group">
+                            <label for="autorSite">Site</label>
+                            <input type="text" class="form-control" id="autorSite" name="autorSite" data-ng-model="recipe.author.site">
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <a href="javascript:" class="btn btn-link">Cancelar</a>
+                        <button class="btn btn-danger" type="submit" data-ng-click="save()">Salvar</button>
+                    </div>
                 </div>
-                <button class="btn btn-default">Adicionar</button>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Ingrediente</th>
-                            <th>Quantidade</th>
-                            <th>Unidade</th>
-                            <th>Trocável por</th>
-                            <th>Opcional</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody data-ng-repeat="recipe.ingredients">
-                        <tr>{{ingredient}}</tr>
-                        <td>{{quantity}}</td>
-                        <td>{{unity}}</td>
-                        <td>{{switchList}}</td>
-                        <td>{{optional}}</td>
-                        <td>
-                            <a href="javascript:">
-                                <span class="fa fa-remove"></span>
-                            </a>
-                        </td>
-                    </tbody>
-                </table>
-            </fieldset>
-            <fieldset>
-                <legend>Passos</legend>
-                <div class="form-group">
-                    <label for="stepOrder">Ordem</label>
-                    <input type="number" id="stepOrder" name="stepOrder">
-                </div>
-                <div class="form-group">
-                    <label for="stepDescription">Descrição</label>
-                    <textarea name="stepDescription" id="stepDescription" class="form-control"></textarea>
-                </div>
-                <div class="checkbox">
-                    <label for="stepOptional">
-                        <input type="checkbox" name="stepOptional" id="stepOptional">Opcional
-                    </label>
-                </div>
-                <button class="btn btn-default">Adicionar</button>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Ordem</th>
-                            <th>Descrição</th>
-                            <th>Opcional</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody data-ng-repeat="recipe.steps">
-                        <tr>{{order}}</tr>
-                        <td>{{description}}</td>
-                        <td>{{optional}}</td>
-                        <td>
-                            <a href="javascript:">
-                                <span class="fa fa-remove"></span>
-                            </a>
-                        </td>
-                    </tbody>
-                </table>
-            </fieldset>
-            <fieldset>
-                <legend>Autor</legend>
-                <div class="form-group">
-                    <label for="authorName">Nome</label>
-                    <input type="text" class="form-control" id="authorName" name="authorName" data-ng-model="recipe.author.name">
-                </div>
-                <div class="form-group">
-                    <label for="autorEmail">Email</label>
-                    <input type="text" class="form-control" id="autorEmail" name="autorEmail" data-ng-model="recipe.author.email">
-                </div>
-                <div class="form-group">
-                    <label for="autorSite">Site</label>
-                    <input type="text" class="form-control" id="autorEmail" name="autorEmail" data-ng-model="recipe.author.site">
-                </div>
-            </fieldset>
-            <button class="btn btn-default" type="submit">Salvar</button>
+            </div>
+
+            <div class="col-md-6">
+                <%-partial( 'ingredients')%>
+            </div>
+            <div class="col-md-6">
+                <%-partial( 'steps')%>
+            </div>
         </form>
     </div>
