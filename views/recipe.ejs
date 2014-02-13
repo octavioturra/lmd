@@ -1,7 +1,9 @@
 <%layout( "_layout")%>
     <div class="row-fluid" data-ng-controller="RecipeCtrl">
         <form method="post" data-nj-submit="save()">
-            <input type="hidden" name="id" value="<%=recipe._id%>" data-ng-model="recipe.id">
+            <%if(recipe._id){%>
+                <span data-ng-init="loadRecipe('<%=recipe._id%>')"></span>
+            <%}%>
             <div class="col-md-6">
                 <fieldset class="panel panel-default">
                     <div class="panel-heading">

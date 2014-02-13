@@ -1,5 +1,10 @@
 mongoose = require 'mongoose'
 ObjectId = mongoose.Schema.Types.ObjectId
+Schema = mongoose.Schema
+
+step = require './step'
+ingredient = require './ingredient'
+author = require './author'
 
 module.exports = mongoose.model 'Recipe', {
     changeset: type: Number, get: (val)-> @_v
@@ -9,24 +14,9 @@ module.exports = mongoose.model 'Recipe', {
     category: String
     image: String
     imageBinary: Buffer
-    ingredients:[
-        key: ObjectId
-        name: String
-        quantity: type: Number, min: 0
-        unity: String
-        switchList: [ObjectId]
-        optional: type: Boolean, default: Date.now
-    ], 
-    steps:[
-        order: Number
-        description: String
-        optional: type: Boolean, default: Date.now
-    ],
-    author:{
-        name: String
-        site: String
-        email: String
-    },
+    ingredients:[ingredient]
+    steps:[step]
+    author: [author]
     lastUpdate : type: Date, default: Date.now
     active : type: Boolean, default: true
 }

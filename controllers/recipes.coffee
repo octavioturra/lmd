@@ -30,7 +30,7 @@ class Recipes
             if r.length is 0
                 req.session.message = type : 'danger', message: 'Receita não encontrada'
                 return res.end redirect: '/recipes'            
-            res.send recipe: r[0]
+            res.send success: true, data: r[0]
         
     modify: (req, res, next)=>
         id = req.param 'id' 
