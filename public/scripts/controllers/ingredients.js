@@ -5,7 +5,7 @@ angular.module('lmd').controller('IngredientsCtrl', function ($scope) {
         var self = Ingredient.prototype;
         self.key = '';
         self.name = '';
-        self.quantity = 0;
+        self.quantity = 1;
         self.unity = '';
         self.optional = false;
         self.switchList = [];

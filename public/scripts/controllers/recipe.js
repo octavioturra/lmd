@@ -6,12 +6,12 @@ doRemove = function (id) {
     }
 };
 
-angular.module('lmd').controller('RecipeCtrl', function ($scope, $http) {
+angular.module('lmd').controller('RecipeCtrl', function ($scope, $http) {    
     var recipe = {
         id: '',
         ingredients: [],
         steps: [],
-        author: {}
+        author: [{}]
     };
     $scope.recipe = recipe;
 
@@ -26,24 +26,27 @@ angular.module('lmd').controller('RecipeCtrl', function ($scope, $http) {
             if(!d.success){
                 return;    
             }
-            $scope.recipe = d.data;
-            recipe = $scope.recipe;
+            $scope.recipe = d.data;            
+            recipe = $scope.recipe;            
         }).error(function (d) {
 
         }); 
     };
 
-    $scope.save = function () {
+    $scope.save = function () {        
+        if(confirm('Deseja salvar esta receita')==false){
+            return;
+        }    
         $http({
             method: 'POST',
-            url: '/recipe/' + recipe.id,
+            url: '/recipe/' + recipe._id,
             headers: {
                 'Content-type': 'application/json'
             },
             data: recipe
         })
             .success(function (d) {
-                console.log(d);
+                location.href = '/'
             })
             .error(function (d) {
                 console.log(d);

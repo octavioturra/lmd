@@ -14,8 +14,9 @@ class Recipes
         res.render 'recipe', recipe: _id:'', name:'', description:''
     
     create: (req, res, next)=>
-        recipe = new @recipe name : req.param('name'), description: req.param('description')
-        recipe.save (err, r)->
+        recipe = new @recipe req.body
+        recipe.save (err, r)->       
+            console.log r, err
             if err
                 req.session.message = type : 'danger', message: err.message
                 return res.redirect '/recipes'
@@ -33,10 +34,13 @@ class Recipes
             res.send success: true, data: r[0]
         
     modify: (req, res, next)=>
-        id = req.param 'id' 
+        id = req.param 'id'         
         toUpdate = 
             name : req.param 'name'
-            description : req.param 'description'
+            description : req.param 'description'            
+            author : req.param 'author'
+            steps : req.param 'steps'
+            ingredients : req.param 'ingredients'
         
         @recipe.update { _id: id }, {$set: toUpdate}, (err, r)->
             if err

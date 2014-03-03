@@ -1,10 +1,10 @@
 angular.module('lmd').controller('StepsCtrl', function ($scope) {
     var Step = function () {
-        function Step() {};
-
+        function Step() {
+            this.order = $scope.recipe.steps.length + 1;
+        };
         var self = Step.prototype;
         self.description = '';
-        self.order = 0;
         self.optional = false;
         return Step;
     }();

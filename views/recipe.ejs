@@ -39,22 +39,22 @@
                     <div class="panel-body">
                         <div class="form-group">
                             <label for="authorName">Nome</label>
-                            <input type="text" class="form-control" id="authorName" name="authorName" data-ng-model="recipe.author.name">
+                            <input type="text" class="form-control" id="authorName" name="authorName" data-ng-model="recipe.author[0].name">
                         </div>
                         <div class="form-group">
                             <label for="autorEmail">Email</label>
-                            <input type="text" class="form-control" id="autorEmail" name="autorEmail" data-ng-model="recipe.author.email">
+                            <input type="email" class="form-control" id="autorEmail" name="autorEmail" data-ng-model="recipe.author[0].email">
                         </div>
                         <div class="form-group">
                             <label for="autorSite">Site</label>
-                            <input type="text" class="form-control" id="autorSite" name="autorSite" data-ng-model="recipe.author.site">
+                            <input type="url" class="form-control" id="autorSite" name="autorSite" data-ng-model="recipe.author[0].site">
                         </div>
                     </div>
                 </fieldset>
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <a href="javascript:" class="btn btn-link">Cancelar</a>
-                        <button class="btn btn-danger" type="submit" data-ng-click="save()">Salvar</button>
+                        <a href="/" class="btn btn-link">Cancelar</a>
+                        <button class="btn btn-danger" type="submit">Salvar</button>
                     </div>
                 </div>
             </div>
